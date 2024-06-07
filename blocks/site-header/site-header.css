@@ -1,0 +1,111 @@
+.site-header {
+    .site-logo-container,
+    .site-navigation-container {
+        border-bottom: 0.5px solid var(--grey);
+    }
+
+    .site-logo-container {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 7.8rem
+    }
+
+    .site-navigation-container {
+        align-items: center;
+        display: grid;
+        gap: 1.6rem;
+        grid-template-columns: repeat(6, 1fr);
+
+        .wp-block-navigation__container {
+            display: grid;
+            gap: 1.6rem;
+            grid-template-columns: repeat(5, 1fr);
+
+            .wp-block-navigation-item {
+                position: relative;
+
+                &:nth-last-child(-n + 5) {
+                    grid-column: 1;
+                }
+                
+                &:nth-last-child(-n + 4) {
+                    grid-column: 2;
+                }
+
+                &:nth-last-child(-n + 3) {
+                    grid-column: 3;
+                }
+
+                &:nth-last-child(-n + 2) {
+                    grid-column: 4;
+                }
+
+                &:last-child {
+                    grid-column: 5;
+                }
+
+                &::before {
+                    background-color: var(--grey);
+                    content: '';
+                    height: 2.4rem;
+                    left: -0.8rem;
+                    position: absolute;
+                    width: 0.5px;
+                }
+            }
+
+            .wp-block-navigation-item__content {
+                color: var(--dark-green);
+                font-family: var(--archer);
+                font-size: 1.8rem;
+                font-weight: 800;
+            }
+        }
+
+        .cart-icon-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .site-header {
+        border-bottom: 0.5px solid var(--grey);
+
+        .site-logo-container,
+        .site-navigation-container {
+            grid-column: auto / span 3;
+            border-bottom: none;
+        }
+
+        .site-logo-container {
+            justify-content: flex-start;
+            padding: 0;
+
+            .site-logo {
+                max-width: 100%;
+            }
+        }
+
+        .site-navigation-container {
+            grid-template-columns: repeat(3, 1fr);
+
+            .site-navigation {
+                grid-column: auto / span 2;
+            }            
+        }
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .site-header.grid {
+        .site-logo-container {
+            grid-column: auto / span 2;
+        }
+
+        .site-navigation-container {
+            grid-column: auto / span 4;
+        }
+    }
+}
