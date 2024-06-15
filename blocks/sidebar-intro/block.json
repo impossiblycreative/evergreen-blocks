@@ -1,0 +1,18 @@
+{
+    "name": "evergreen/sidebar-intro",
+    "title": "Sidebar Introduction Text",
+    "description": "Displays the smaller introduction text to the left of the standard intro",
+    "style": [ "file:./sidebar-intro.css" ],
+    "icon": "id",
+    "keywords": ["header"],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "sidebar-intro.php"
+    },
+    "supports": {
+        "align": false,
+        "anchor": true,
+        "mode": true
+    },
+    "version": "1.0.0"
+}

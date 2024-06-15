@@ -1,4 +1,8 @@
 .site-header {
+    display: grid;
+    gap: 1.6rem;
+    grid-template-columns: repeat(12, 1fr);
+
     .site-logo-container,
     .site-navigation-container {
         border-bottom: 0.5px solid var(--grey);
@@ -7,7 +11,7 @@
     .site-logo-container {
         display: flex;
         justify-content: flex-end;
-        padding-right: 7.8rem
+        padding-right: 7.6rem;
     }
 
     .site-navigation-container {
@@ -19,29 +23,25 @@
         .wp-block-navigation__container {
             display: grid;
             gap: 1.6rem;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
 
             .wp-block-navigation-item {
                 position: relative;
-
-                &:nth-last-child(-n + 5) {
-                    grid-column: 1;
-                }
                 
                 &:nth-last-child(-n + 4) {
-                    grid-column: 2;
+                    grid-column: 1;
                 }
 
                 &:nth-last-child(-n + 3) {
-                    grid-column: 3;
+                    grid-column: 2;
                 }
 
                 &:nth-last-child(-n + 2) {
-                    grid-column: 4;
+                    grid-column: 3;
                 }
 
                 &:last-child {
-                    grid-column: 5;
+                    grid-column: 4;
                 }
 
                 &::before {
@@ -59,6 +59,40 @@
                 font-family: var(--archer);
                 font-size: 1.8rem;
                 font-weight: 800;
+                text-decoration: none;
+                transition: all 0.4s ease-in-out;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: var(--medium-green);
+                }
+            }
+        }
+
+        .account-link {
+            color: var(--dark-green);
+            font-family: var(--archer);
+            font-size: 1.8rem;
+            font-weight: 800;
+            position: relative;
+            text-decoration: none;
+            transition: all 0.4s ease-in-out;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: var(--medium-green);
+            }
+
+            &::before {
+                background-color: var(--grey);
+                bottom: 0;
+                content: '';
+                height: 2.4rem;
+                left: -0.8rem;
+                position: absolute;
+                width: 0.5px;
             }
         }
 

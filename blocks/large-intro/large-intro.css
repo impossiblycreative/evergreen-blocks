@@ -1,4 +1,8 @@
 .large-intro {
+    margin-block-start: 0;
+    margin-top: 0;
+    margin-bottom: 3.2rem;
+
     h1 {
         color: var(--medium-green);
         display: flex;
@@ -16,8 +20,16 @@
         color: var(--dark-green);
         font-size: 6.4rem;
         font-weight: 800;
+        grid-column: auto / span 9;
+        grid-column-start: 4;
         line-height: 1;
         margin: 3.4rem 0 0;
+    }
+
+    .editor-styles-wrapper & {
+        p {
+            font-size: 64px;
+        }
     }
 }
 

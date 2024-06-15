@@ -1,0 +1,174 @@
+.ordering {
+    margin-block-start: 0;
+    
+    .order-headers {
+        .order-header {
+            border-top: 1px solid var(--medium-green);
+            border-bottom: 2px solid var(--medium-green);
+            color: var(--medium-green);
+            font-family: var(--soehne);
+            font-size: 1.6rem;
+            padding: 1.6rem 0;
+            text-transform: lowercase;
+        }
+
+        .product-attributes-header {
+            display: grid;
+            gap: 1.6rem;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+    }
+
+    .section-title {
+        color: var(--medium-green);
+        font-size: 6.4rem;
+        font-weight: 800;
+        grid-column-end: -1;
+        line-height: 1;
+    }
+
+    .order-body {
+        grid-column: auto / span 12;
+
+        .ordering-filters {
+            .product-categories {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+
+                .product-category {
+                    color: var(--grey);
+                    font-family: var(--soehne-extralight);
+                    font-size: 1.6rem;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    line-height: 1.5;
+                    text-decoration: none;
+
+                    .cross {
+                        align-items: center;
+                        color: var(--grey);
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+
+                        span {
+                            background: black;
+                            display: inline-block;
+                            height: 1px;
+                            width: 12px;
+                            transition: all 1s ease-in-out;
+
+                            &.cross-vertical {
+                                position: absolute;
+                                rotate: 90deg;
+                            }
+                        }
+                    }
+
+                    &.active {
+                        color: var(--black);
+                        font-family: var(--soehne-light);
+                        
+                        span {
+                            &.cross-horizontal {
+                                background-color: var(--orange);
+                                rotate: 405deg;
+                            }
+
+                            &.cross-vertical {
+                                background-color: var(--orange);
+                                rotate: 490deg;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .product-listing {
+            display: grid;
+            gap: 1.6rem;
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            font-family: var(--soehne);
+
+            .name-description,
+            .attributes,
+            .add-to-cart-container {
+                border-bottom: 2px dotted var(--medium-green);
+                padding: 0.8rem 0;
+            }
+
+            &:first-of-type {
+                .name-description,
+                .attributes,
+                .add-to-cart-container {
+                    padding-top: 0;
+                }
+            }
+
+            .name-description {
+                font-size: 1.6rem;
+                font-family: var(--soehne-light);
+    
+                span {
+                    display: block;
+                }
+    
+                .product-name {
+                    font-family: var(--soehne);
+                }
+            }
+
+            .attributes {
+                display: grid;
+                gap: 1.6rem;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+
+                div {
+                    align-items: center;
+                    display: flex;
+                }
+
+                span,
+                a,
+                input {
+                    align-items: center;
+                    font-family: var(--soehne);
+                    font-size: 1.6rem;
+                }
+
+                a {
+                    text-decoration: none;
+                }
+
+                input {
+                    margin: 0 0.4rem;
+                    max-width: 60%;
+                }
+            }
+
+            .add-to-cart-container {
+                align-items: center;
+                display: flex;
+            
+                .add-to-cart-button {
+                    color: var(--orange);
+                    font-family: var(--soehne);
+                    font-size: 1.6rem;
+                    opacity: 1;
+                    pointer-events: all;
+                    text-decoration: none;
+                    text-transform: lowercase;
+                    transition: all 0.4s ease-in-out;
+                    visibility: visible;
+
+                    &.hidden {
+                        opacity: 0;
+                        pointer-events: none;
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}

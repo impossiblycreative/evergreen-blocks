@@ -26,6 +26,10 @@ function evergreen_register_acf_blocks() {
      */
     register_block_type( __DIR__ . '/blocks/site-header' );
     register_block_type( __DIR__ . '/blocks/large-intro' );
+    register_block_type( __DIR__ . '/blocks/intro-text' );
+    register_block_type( __DIR__ . '/blocks/standard-intro' );
+    register_block_type( __DIR__ . '/blocks/sidebar-intro' );
+    register_block_type( __DIR__ . '/blocks/order' );
 }
 // Here we call our tt3child_register_acf_block() function on init.
 add_action( 'init', 'evergreen_register_acf_blocks' );

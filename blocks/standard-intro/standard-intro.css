@@ -1,0 +1,22 @@
+.standard-intro {
+    border-top: 1px solid var(--medium-green);
+    color: var(--orange);
+    display: grid;
+    font-size: 3.2rem;
+    gap: 1.6rem;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    line-height: 1;
+    margin-block-start: 0;
+
+    p {
+        font-weight: 300;
+        grid-column: auto / span 6;
+        margin-top: 0;
+        margin-bottom: 1.6rem;
+        padding-top: 0.8rem;
+    }
+
+    .editor-styles-wrapper & {
+        font-size: 32px;
+    }
+}

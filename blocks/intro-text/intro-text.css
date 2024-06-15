@@ -1,0 +1,19 @@
+.intro-text {
+    margin-block-start: 0;
+    margin-bottom: 8.0rem;
+
+    .wp-block {
+        display: grid;
+        gap: 1.6rem;
+
+        &:nth-of-type(odd) {
+            grid-column: auto / span 3;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        &:nth-of-type(even) {
+            grid-column: auto / span 9;
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+        }
+    }
+}

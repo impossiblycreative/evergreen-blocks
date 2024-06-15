@@ -1,0 +1,18 @@
+.sidebar-intro {
+    border-top: 1px solid var(--medium-green);
+    color: var(--dark-green);
+    font-size: 3.2rem;
+    line-height: 1;
+    margin-block-start: 0;
+    padding-top: 0.8rem;
+    padding-right: 6.0rem;
+
+    p {
+        font-weight: 300;
+        margin-top: 0;
+    }
+
+    .editor-styles-wrapper & {
+        font-size: 32px;
+    }
+}

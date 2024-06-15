@@ -6,13 +6,13 @@
     "icon": "id",
     "keywords": ["header"],
     "acf": {
-        "mode": "preview",
+        "mode": "edit",
         "renderTemplate": "large-intro.php"
     },
     "supports": {
         "align": false,
         "anchor": true,
-        "mode": false
+        "mode": true
     },
     "version": "1.0.0"
 }

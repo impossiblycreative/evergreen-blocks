@@ -1,0 +1,18 @@
+{
+    "name": "evergreen/intro-text",
+    "title": "Introduction Text - Container",
+    "description": "Wrapper block for the Introduction text",
+    "style": [ "file:./intro-text.css" ],
+    "icon": "id",
+    "keywords": ["intro"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "intro-text.php"
+    },
+    "supports": {
+        "align": false,
+        "anchor": true,
+        "mode": false
+    },
+    "version": "1.0.0"
+}
