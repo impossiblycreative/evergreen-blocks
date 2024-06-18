@@ -41,7 +41,7 @@
                 <ul class="product-categories">
                     <?php foreach( $product_categories as $product_category ) : ?>
                         <li class="product-category-container">
-                            <a class="product-category grid" href="#">
+                            <a class="product-category grid" href="#" data-category="<?php echo esc_html( $product_category->slug ); ?>">
                                 <span class="category-name two-columns"><?php echo esc_html( $product_category->name ); ?></span>
                                 <span class="cross one-column">
                                     <span class="cross-horizontal"></span>
@@ -51,6 +51,8 @@
                         </li>
                     <?php endforeach; ?>
                 </ul>
+
+
             <?php endif; ?>
         </div>
 
@@ -63,14 +65,17 @@
             $products = new WP_Query( $product_args );
         ?>
         
-        <?php if ( $products->have_posts() ) : ?>
-            <div class="product-list nine-columns">
+        <?php if ( $products->have_posts() && is_user_logged_in() ) : ?>
+            <div class="product-list nine-columns" data-active-filters="all">
                 <?php while ( $products->have_posts() ) : ?>
                     <?php $products->the_post(); ?>
 
-                    <?php $product = wc_get_product( get_the_ID() ); ?>
+                    <?php 
+                        $product    = wc_get_product( get_the_ID() );
+                        $terms      = get_the_terms( $product->get_id(), 'product_cat' );
+                    ?>
 
-                    <div class="product-listing">
+                    <div class="product-listing active <?php foreach( $terms as $term ) { echo esc_html( $term->slug ); } ?>">
                         <div class="name-description three-columns">
                             <span class="product-sku"><?php echo esc_html( $product->get_sku() ); ?></span>
                             <span class="product-name"><?php echo esc_html( $product->get_name() ); ?></span>
@@ -94,12 +99,16 @@
                         </div>
 
                         <div class="add-to-cart-container">
-                            <a id="add-product-<?php echo get_the_ID(); ?>-to-card" class="add-to-cart-button hidden" href="#"><?php esc_html_e( 'Add To Cart', 'evergreen' ) ?></a>
+                            <button id="add-product-<?php echo get_the_ID(); ?>-to-card" class="add-to-cart-button hidden" data-product-id="<?php echo get_the_ID(); ?>"><?php esc_html_e( 'Add To Cart', 'evergreen' ) ?></button>
                         </div>
                     </div>
                 <?php endwhile; ?>
 
                 <?php wp_reset_postdata(); ?>
+            </div>
+        <?php else : ?>
+            <div class="product-list nine-columns" data-active-filters="all">
+                <?php esc_html_e( 'You must be logged in to order.', 'evergreen' ); ?>
             </div>
         <?php endif; ?>
     </div>
@@ -108,6 +117,7 @@
 <script>
     jQuery( document ).ready( function( $ ) {
         const productFilters    = $( '.product-category' );
+        const products          = $( '.product-listing' );
         const decreasers        = $( '.decrease-quantity' );
         const increasers        = $( '.increase-quantity' );
         const quantities        = $( '.quantity' );
@@ -115,7 +125,15 @@
 
         $( productFilters ).each( function(){
             $( this ).on( 'click', function( event ){
+                const category = $( this ).data( 'category' );
+
                 $( this ).toggleClass( 'active' );
+
+                $( products ).each( function() {
+                    if ( $( this ).hasClass( category ) ) {
+                        $( this ).toggleClass( 'active' );
+                    }
+                } );
             } );
         } );
 
@@ -163,9 +181,47 @@
             } );
         } );
 
+        // Handles adding to the cart
         $( addToCarts ).each( function() {
             $( this ).on( 'click', function( event ){
-                console.log( 'add to cart' );
+                const quantity      = $( this ).parent().parent().children( '.attributes' ).children( '.quantity' ).children( 'input' ).val(); 
+                const productID     = $( this ).data( 'product-id' );
+                const productData   = {
+                    product_id: productID,
+                    quantity:   quantity
+                };
+
+                console.log( productData );
+
+                if ( 'undefined' === typeof wc_add_to_cart_params ) {
+                    console.log( 'ERROR: The Add to Cart params are not present.' );
+
+                    // The add to cart params are not present.
+                    return false;
+                }
+
+                jQuery.post( wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'add_to_cart' ), productData, function( response ) {
+                    if ( ! response ) {
+                        return;
+                    }
+
+                    // This redirects the user to the product url if for example options are needed ( in a variable product ).
+                    // You can remove this if it's not the case.
+                    if ( response.error && response.product_url ) {
+                        window.location = response.product_url;
+                        return;
+                    }
+
+                    // Remove this if you never want this action redirect.
+                    if ( wc_add_to_cart_params.cart_redirect_after_add === 'yes' ) {
+                        window.location = wc_add_to_cart_params.cart_url;
+                        return;
+                    }
+
+                    // This is important so your theme gets a chance to update the cart quantity for example, but can be removed if not needed.
+                    $( document.body ).trigger( 'added_to_cart', [ response.fragments, response.cart_hash ] );
+                } );
+
             } );
         } );
     } );

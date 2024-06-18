@@ -31,8 +31,9 @@ $inner_blocks_template = array(
         <?php endif; ?>
 
         <!-- Cart Icon is SEPARATE -->
-        <div class="cart-icon-container one-column">
-            <a href="/cart" title="Cart">
+        <div class="cart-link-container one-column">
+            <a class="cart-link" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
+                <span class="cart-count"><?php echo sprintf ( _n( '%d', '%d', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ); ?></span>
                 <img class="cart-icon" src="<?php echo trailingslashit( plugin_dir_url( __FILE__ ) ); ?>img/cart-icon.svg" width="35" />
             </a>
         </div>

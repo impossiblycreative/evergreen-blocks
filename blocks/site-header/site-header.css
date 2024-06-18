@@ -96,9 +96,27 @@
             }
         }
 
-        .cart-icon-container {
+        .cart-link-container {
             display: flex;
             justify-content: flex-end;
+
+            .cart-link {
+                position: relative;
+                
+                .cart-count {
+                    align-items: center;
+                    color: var(--white);
+                    display: flex;
+                    font-family: var(--archer);
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    height: 22px;
+                    justify-content: center;
+                    left: 3px;
+                    position: absolute;
+                    width: 100%;
+                }
+            }
         }
     }
 }
