@@ -1,0 +1,18 @@
+.site-footer {
+    display: grid;
+    font-family: var(--soehne-extralight);
+    font-size: 1.2rem;
+    line-height: 1.33;
+    gap: 1.6rem;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    margin-top: 4.8rem;
+
+    .company-name {
+        color: var(--medium-green);
+        font-family: var(--soehne);
+    }
+
+    address {
+        font-style: normal;
+    }
+}

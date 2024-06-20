@@ -25,6 +25,7 @@ function evergreen_register_acf_blocks() {
      * @link https://developer.wordpress.org/reference/functions/register_block_type/
      */
     register_block_type( __DIR__ . '/blocks/site-header' );
+    register_block_type( __DIR__ . '/blocks/site-footer' );
     register_block_type( __DIR__ . '/blocks/large-intro' );
     register_block_type( __DIR__ . '/blocks/intro-text' );
     register_block_type( __DIR__ . '/blocks/standard-intro' );

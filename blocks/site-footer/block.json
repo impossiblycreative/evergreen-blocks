@@ -1,0 +1,18 @@
+{
+    "name": "evergreen/site-footer",
+    "title": "Site Footer",
+    "description": "Controls the website's footer",
+    "style": [ "file:./site-footer.css" ],
+    "icon": "id",
+    "keywords": ["footer"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "site-footer.php"
+    },
+    "supports": {
+        "align": false,
+        "anchor": true,
+        "mode": false
+    },
+    "version": "1.0.0"
+}
