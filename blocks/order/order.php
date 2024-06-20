@@ -75,7 +75,7 @@
                         $terms      = get_the_terms( $product->get_id(), 'product_cat' );
                     ?>
 
-                    <div class="product-listing active <?php foreach( $terms as $term ) { echo esc_html( $term->slug ); } ?>">
+                    <div class="product-listing <?php foreach( $terms as $term ) { echo esc_html( $term->slug ); } ?>">
                         <div class="name-description three-columns">
                             <span class="product-sku"><?php echo esc_html( $product->get_sku() ); ?></span>
                             <span class="product-name"><?php echo esc_html( $product->get_name() ); ?></span>
@@ -125,6 +125,8 @@
 
         $( productFilters ).each( function(){
             $( this ).on( 'click', function( event ){
+                event.preventDefault();
+
                 const category = $( this ).data( 'category' );
 
                 $( this ).toggleClass( 'active' );
@@ -140,6 +142,7 @@
         // Decreases the quantity of a product by 1
         $( decreasers ).each( function() {
             $( this ).on( 'click', function( event ){
+                event.preventDefault();
                 
                 let quantityField = $( event.target ).siblings( 'input' );
                 let quantityValue = parseInt( $( quantityField ).val() );
@@ -156,6 +159,7 @@
         // Increases the quantity of a product by 1
         $( increasers ).each( function() {
             $( this ).on( 'click', function( event ){
+                event.preventDefault();
                 
                 let quantityField = $( event.target ).siblings( 'input' );
                 let quantityValue = parseInt( $( quantityField ).val() );
@@ -190,8 +194,6 @@
                     product_id: productID,
                     quantity:   quantity
                 };
-
-                console.log( productData );
 
                 if ( 'undefined' === typeof wc_add_to_cart_params ) {
                     console.log( 'ERROR: The Add to Cart params are not present.' );
