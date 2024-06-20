@@ -39,9 +39,19 @@
 
             <?php if ( ! empty( $product_categories ) ) : ?>
                 <ul class="product-categories">
+                    <li class="product-category-container">
+                        <a class="product-category grid active" href="#" data-category="all">
+                            <span class="category-name two-columns"><?php esc_html_e( 'All Products', 'evergreen' ); ?></span>
+                            <span class="cross one-column">
+                                <span class="cross-horizontal"></span>
+                                <span class="cross-vertical"></span>
+                            </span>
+                        </a>
+                    </li>
+
                     <?php foreach( $product_categories as $product_category ) : ?>
                         <li class="product-category-container">
-                            <a class="product-category grid" href="#" data-category="<?php echo esc_html( $product_category->slug ); ?>">
+                            <a class="product-category grid active" href="#" data-category="<?php echo esc_html( $product_category->slug ); ?>">
                                 <span class="category-name two-columns"><?php echo esc_html( $product_category->name ); ?></span>
                                 <span class="cross one-column">
                                     <span class="cross-horizontal"></span>
@@ -75,7 +85,7 @@
                         $terms      = get_the_terms( $product->get_id(), 'product_cat' );
                     ?>
 
-                    <div class="product-listing <?php foreach( $terms as $term ) { echo esc_html( $term->slug ); } ?>">
+                    <div class="product-listing active <?php foreach( $terms as $term ) { echo esc_html( $term->slug ); } ?>">
                         <div class="name-description three-columns">
                             <span class="product-sku"><?php echo esc_html( $product->get_sku() ); ?></span>
                             <span class="product-name"><?php echo esc_html( $product->get_name() ); ?></span>
@@ -129,13 +139,37 @@
 
                 const category = $( this ).data( 'category' );
 
-                $( this ).toggleClass( 'active' );
+                if ( category === 'all' ) {
+                    if ( $( this ).hasClass( 'active' ) ) {
+                        $( this ).removeClass( 'active' );
 
-                $( products ).each( function() {
-                    if ( $( this ).hasClass( category ) ) {
-                        $( this ).toggleClass( 'active' );
+                        $ ( productFilters ).each( function() {
+                            $( this ).removeClass( 'active' );
+                        } );
+
+                        $( products ).each( function() {
+                            $( this ).removeClass( 'active' );
+                        } );
+                    } else {
+                        $( this ).addClass( 'active' );
+
+                        $ ( productFilters ).each( function() {
+                            $( this ).addClass( 'active' );
+                        } );
+
+                        $( products ).each( function() {
+                            $( this ).addClass( 'active' );
+                        } );
                     }
-                } );
+                } else {
+                    $( this ).toggleClass( 'active' );
+
+                    $( products ).each( function() {
+                        if ( $( this ).hasClass( category ) ) {
+                            $( this ).toggleClass( 'active' );
+                        }
+                    } );
+                }
             } );
         } );
 
