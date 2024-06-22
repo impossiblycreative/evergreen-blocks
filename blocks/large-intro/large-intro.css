@@ -1,34 +1,46 @@
 .large-intro {
+    height: 19.2rem;
+    line-height: 1;
     margin-block-start: 0;
     margin-top: 0;
     margin-bottom: 3.2rem;
 
     h1 {
         color: var(--medium-green);
+        font-family: var(--archer);
         display: flex;
         flex-flow: column;
-        font-family: var(--archer);
+        justify-content: flex-end;
         font-size: 6.4rem;
         font-weight: 800;
-        height: 19.2rem;
-        justify-content: flex-end;
         line-height: 1;
         margin: 0;
     }
 
     p {
         color: var(--dark-green);
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-end;
         font-size: 6.4rem;
         font-weight: 800;
-        grid-column: auto / span 9;
-        grid-column-start: 4;
+        grid-column: 4 / span 9;
         line-height: 1;
-        margin: 3.4rem 0 0;
+        margin: 0;
+    }
+
+    .woocommerce-account & {
+        grid-column: 1 / -1;
+
+        p {
+            color: var(--medium-green);
+        }
     }
 
     .editor-styles-wrapper & {
         p {
             font-size: 64px;
+            margin: 0;
         }
     }
 }

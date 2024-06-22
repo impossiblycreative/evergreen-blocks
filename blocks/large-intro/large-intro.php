@@ -4,9 +4,17 @@
 ?>
 
 <?php if ( $custom_text ) : ?>
-    <div class="large-intro archer grid">
-        <?php echo wp_kses_post( $intro_text ); ?>
-    </div>
+    <?php if ( is_account_page() ) : ?>
+        <?php if ( is_user_logged_in() ) : ?>
+            <div class="large-intro archer grid">
+                <?php echo wp_kses_post( $intro_text ); ?>
+            </div>
+        <?php endif; ?>
+    <?php else : ?>
+        <div class="large-intro archer grid">
+            <?php echo wp_kses_post( $intro_text ); ?>
+        </div>
+    <?php endif; ?>
 <?php else : ?>
     <?php if ( is_page() ) : ?>
         <div class="large-intro archer grid">

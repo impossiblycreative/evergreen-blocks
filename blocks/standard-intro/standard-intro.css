@@ -19,4 +19,14 @@
     .editor-styles-wrapper & {
         font-size: 32px;
     }
+
+
+    .woocommerce-account & {
+        color: var(--medium-green);
+        grid-column: 4 / -1;
+
+        p {
+            grid-column: 1 / -1;
+        }
+    }
 }
