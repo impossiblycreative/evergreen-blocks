@@ -16,3 +16,24 @@
         font-style: normal;
     }
 }
+
+@media screen and (max-width: 1023px) {
+    .site-footer {
+        border-top: 0.5px solid var(--grey);
+        
+        .footer-left,
+        .footer-right {
+            grid-column: auto / span 6;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .site-footer {
+        .footer-left,
+        .footer-right {
+            grid-column: 1 / span 12;
+            grid-column-start: 1;
+        }
+    }
+}

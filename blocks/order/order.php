@@ -50,7 +50,7 @@
                     </li>
 
                     <?php foreach( $product_categories as $product_category ) : ?>
-                        <li class="product-category-container">
+                        <li class="product-category-container" data-category="<?php echo esc_html( $product_category->slug ); ?>">
                             <a class="product-category grid active" href="#" data-category="<?php echo esc_html( $product_category->slug ); ?>">
                                 <span class="category-name two-columns"><?php echo esc_html( $product_category->name ); ?></span>
                                 <span class="cross one-column">
@@ -68,6 +68,8 @@
 
         <?php 
             $product_args = array(
+                'order' => 'ASC',
+                'orderby' => 'title',
                 'post_type' => 'product',
                 'posts_per_page' => -1,
             );

@@ -44,6 +44,12 @@
                     line-height: 1.5;
                     text-decoration: none;
 
+                    /*
+                    &[data-category="uncategorized"] {
+                        display: none;
+                    }
+                    */
+
                     .cross {
                         align-items: center;
                         color: var(--grey);
@@ -180,6 +186,76 @@
                         opacity: 0;
                         pointer-events: none;
                         visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .ordering {
+        .section-title {
+            grid-column: 1 / -1;
+        }
+
+        & .order-headers {
+            .filters-header {
+                display: none;
+            }
+
+            .product-header {
+                grid-column: 1 / span 6 !important;
+            }
+
+            .product-attributes-header {
+                grid-column: auto / span 3;
+
+                .two-columns {
+                    display: none;
+                }
+
+                .one-column {
+                    grid-column: 1 / -1;
+                }
+            }
+
+            > .one-column {
+                grid-column: auto / span 3 !important;
+            }
+        }
+        & .order-body {
+            .ordering-filters {
+                display: none;
+            }
+
+            .product-list {
+                grid-column: 1 / span 12 !important;
+
+                .product-listing {
+                    grid-column: 1 / span 12 !important;
+                    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+
+                    .name-description {
+                        grid-column: 1 / span 6;
+                    }
+
+                    .attributes {
+                        grid-column: auto / span 3 !important;
+                        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+                        .size,
+                        .count {
+                            display: none;
+                        }
+
+                        .quantity {
+                            grid-column: 1 / -1;
+                        }
+                    }
+
+                    .add-to-cart-container {
+                        grid-column: auto / span 3;
                     }
                 }
             }
